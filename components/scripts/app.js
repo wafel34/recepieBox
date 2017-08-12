@@ -23,7 +23,7 @@ class ReciepiesContainer extends React.Component {
     }
     render () {
         return (
-            <div clasName="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <SingleRecepie />
             </div>
         );
