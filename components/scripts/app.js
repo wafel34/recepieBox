@@ -8,7 +8,7 @@ var $ = window.jQuery = require("jQuery"),
 class ReciepiesContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             data : [
                 {
                     recepieName: "spaghetti",
@@ -22,9 +22,19 @@ class ReciepiesContainer extends React.Component {
         };
     }
     render () {
+        var recepies = this.state.data;
+        recepies = recepies.map( (item, id) => {
+            return (
+                <SingleRecepie
+                    key={id}
+                    id={id}
+                    name={item.recepieName}
+                    ingridients={item.ingridients} />
+            )
+        });
         return (
             <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <SingleRecepie />
+                {recepies}
             </div>
         );
     }

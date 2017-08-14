@@ -5,21 +5,25 @@ class SingleRecepie extends React.Component {
         super(props);
     }
     render() {
+        var ingridients = this.props.ingridients;
+        ingridients = ingridients.map( (item, id) => {
+            return (
+                <li className="list-group-item" key={id}>{item}</li>
+            )
+        });
         return (
             <div className="panel panel-primary">
-                <div className="panel-heading" role="tab" id="heading1">
+                <div className="panel-heading" role="tab" id={"heading" + this.props.id}>
                     <div className="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                            Collapse 1
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse" + this.props.id} aria-expanded="true" aria-controls={"collapse" + this.props.id}>
+                            {this.props.name}
                         </a>
                     </div>
                 </div>
-                <div id="collapse1" className="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                <div id={"collapse" + this.props.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"#heading" + this.props.id}>
                     <div className="panel-body">
                         <ul className="list-group">
-                            <li className="list-group-item">List item 1</li>
-                            <li className="list-group-item">List item 2</li>
-                            <li className="list-group-item">List item 3</li>
+                            {ingridients}
                         </ul>
                         <button className="btn btn-primary">Edit</button>
                         <button className="btn btn-danger">Delete</button>
