@@ -4,12 +4,15 @@ class SingleRecepie extends React.Component {
     constructor(props){
         super(props);
     }
+    handleDelete = () => {
+        this.props.onDelete(this.props.name);
+    }
     render() {
         var ingridients = this.props.ingridients;
         ingridients = ingridients.map( (item, id) => {
             return (
                 <li className="list-group-item" key={id}>{item}</li>
-            )
+            );
         });
         return (
             <div className="panel panel-primary">
@@ -26,12 +29,11 @@ class SingleRecepie extends React.Component {
                             {ingridients}
                         </ul>
                         <button className="btn btn-primary">Edit</button>
-                        <button className="btn btn-danger">Delete</button>
+                        <button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
 module.exports = SingleRecepie;

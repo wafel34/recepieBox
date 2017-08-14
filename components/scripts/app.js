@@ -21,6 +21,16 @@ class ReciepiesContainer extends React.Component {
             ]
         };
     }
+    removeRecepie = (name) => {
+        var tempData = this.state.data;
+        tempData = tempData.filter( (item) => {
+            return item.recepieName !== name;
+        });
+
+        this.setState({
+            data: tempData
+        });
+    }
     render () {
         var recepies = this.state.data;
         recepies = recepies.map( (item, id) => {
@@ -28,9 +38,10 @@ class ReciepiesContainer extends React.Component {
                 <SingleRecepie
                     key={id}
                     id={id}
+                    onDelete={this.removeRecepie}
                     name={item.recepieName}
                     ingridients={item.ingridients} />
-            )
+            );
         });
         return (
             <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
