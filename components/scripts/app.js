@@ -2,8 +2,13 @@
 var $ = window.jQuery = require("jQuery"),
     React = require("react"),
     ReactDOM = require("react-dom"),
+    ReactBootsrap = require("react-bootstrap"),
     bootstrap = require("bootstrap-sass"),
     SingleRecepie = require("./singleRecepie");
+
+var Button = ReactBootsrap.Button,
+    ListGroup = ReactBootsrap.ListGroup,
+    Accordion = ReactBootsrap.Accordion;
 
 class ReciepiesContainer extends React.Component {
     constructor(props) {
@@ -44,9 +49,9 @@ class ReciepiesContainer extends React.Component {
             );
         });
         return (
-            <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <Accordion>
                 {recepies}
-            </div>
+            </Accordion>
         );
     }
 }

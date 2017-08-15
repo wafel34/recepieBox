@@ -1,4 +1,10 @@
-var React = require("react");
+var React = require("react"),
+    ReactBootsrap = require("react-bootstrap");
+
+var Button = ReactBootsrap.Button,
+    ListGroup = ReactBootsrap.ListGroup,
+    ListGroupItem = ReactBootsrap.ListGroupItem,
+    Panel = ReactBootsrap.Panel;
 
 class SingleRecepie extends React.Component {
     constructor(props){
@@ -11,28 +17,17 @@ class SingleRecepie extends React.Component {
         var ingridients = this.props.ingridients;
         ingridients = ingridients.map( (item, id) => {
             return (
-                <li className="list-group-item" key={id}>{item}</li>
+                <ListGroupItem key={id}>{item}</ListGroupItem>
             );
         });
         return (
-            <div className="panel panel-primary">
-                <div className="panel-heading" role="tab" id={"heading" + this.props.id}>
-                    <div className="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse" + this.props.id} aria-expanded="true" aria-controls={"collapse" + this.props.id}>
-                            {this.props.name}
-                        </a>
-                    </div>
-                </div>
-                <div id={"collapse" + this.props.id} className="panel-collapse collapse" role="tabpanel" aria-labelledby={"#heading" + this.props.id}>
-                    <div className="panel-body">
-                        <ul className="list-group">
-                            {ingridients}
-                        </ul>
-                        <button className="btn btn-primary">Edit</button>
-                        <button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
-                    </div>
-                </div>
-            </div>
+            <Panel bsStyle="primary" collapsible header={this.props.name}>
+                <ListGroup>
+                    {ingridients}
+                </ListGroup>
+                <Button bsStyle="primary">Edit</Button>
+                <Button bsStyle="danger" onClick={this.handleDelete}>Delete</Button>
+            </Panel>
         );
     }
 }
