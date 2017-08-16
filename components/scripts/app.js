@@ -36,6 +36,10 @@ class ReciepiesContainer extends React.Component {
             data: tempData
         });
     }
+    saveRecepie = (name, title, ingrids) => {
+        var tempData = this.state.data;
+        console.log(name);
+    }
     render () {
         var recepies = this.state.data;
         recepies = recepies.map( (item, id) => {
@@ -45,7 +49,8 @@ class ReciepiesContainer extends React.Component {
                     id={id}
                     onDelete={this.removeRecepie}
                     name={item.recepieName}
-                    ingridients={item.ingridients} />
+                    ingridients={item.ingridients}
+                    onSave={this.saveRecepie} />
             );
         });
         return (

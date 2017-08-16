@@ -5,7 +5,10 @@ var Button = ReactBootsrap.Button,
     ListGroup = ReactBootsrap.ListGroup,
     ListGroupItem = ReactBootsrap.ListGroupItem,
     Panel = ReactBootsrap.Panel,
-    Modal = ReactBootsrap.Modal;
+    Modal = ReactBootsrap.Modal,
+    FormGroup = ReactBootsrap.FormGroup,
+    FormControl = ReactBootsrap.FormControl,
+    ControlLabel = ReactBootsrap.ControlLabel;
 
 class SingleRecepie extends React.Component {
     constructor(props){
@@ -23,6 +26,13 @@ class SingleRecepie extends React.Component {
         this.setState({
             showModal: false
         });
+    }
+    saveModal = (e) => {
+        e.preventDefault();
+        var name = this.props.name,
+            title = e.target.querySelector("#recepieNameForm").value,
+            ingridients = e.target.querySelector("#ingridientsForm").value;
+        this.props.onSave(name, title, ingridients);
     }
     handleDelete = () => {
         this.props.onDelete(this.props.name);
@@ -45,10 +55,27 @@ class SingleRecepie extends React.Component {
                 </Panel>
 
                 <Modal show={this.state.showModal} onHide={this.closeModal}>
+                    <form onSubmit={this.saveModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{this.props.name}</Modal.Title>
-                        <Modal.Body>{this.props.ingridients.join(", ")}</Modal.Body>
+                        <Modal.Title>
+
+                            <FormGroup name="dupa" controlId="recepieNameForm">
+                                <ControlLabel>Recepie Name</ControlLabel>
+                                <FormControl componentClass="textarea" defaultValue={this.props.name} />
+                           </FormGroup>
+
+                        </Modal.Title>
                     </Modal.Header>
+                    <Modal.Body>
+                        <FormGroup controlId="ingridientsForm">
+                            <ControlLabel>Ingridients - sepparated by commas</ControlLabel>
+                            <FormControl componentClass="textarea" defaultValue={this.props.ingridients.join(", ")} />
+                        </FormGroup>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button type="submit" bsStyle="primary">Save</Button>
+                    </Modal.Footer>
+                    </form>
                 </Modal>
             </div>
         );
