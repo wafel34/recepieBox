@@ -29,6 +29,9 @@ class SingleRecepie extends React.Component {
     }
     saveModal = (e) => {
         e.preventDefault();
+        this.setState({
+            showModal: false
+        });
         var name = this.props.name,
             title = e.target.querySelector("#recepieNameForm").value,
             ingridients = e.target.querySelector("#ingridientsForm").value;

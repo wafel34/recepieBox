@@ -38,7 +38,16 @@ class ReciepiesContainer extends React.Component {
     }
     saveRecepie = (name, title, ingrids) => {
         var tempData = this.state.data;
-        console.log(name);
+
+        tempData = tempData.map( (item) => {
+            if (item.recepieName === name) {
+                item.recepieName = title;
+                item.ingridients = ingrids.split(", ");
+            }
+            this.setState({
+                data: tempData
+            });
+        });
     }
     render () {
         var recepies = this.state.data;
