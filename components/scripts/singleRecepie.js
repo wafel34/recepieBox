@@ -72,7 +72,7 @@ class SingleRecepie extends React.Component {
                     <Modal.Body>
                         <FormGroup controlId="ingridientsForm">
                             <ControlLabel>Ingridients - sepparated by commas</ControlLabel>
-                            <FormControl componentClass="textarea" defaultValue={this.props.ingridients.join(", ")} />
+                            <FormControl componentClass="textarea" defaultValue={this.props.ingridients.join(",")} />
                         </FormGroup>
                     </Modal.Body>
                     <Modal.Footer>

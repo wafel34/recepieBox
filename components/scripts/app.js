@@ -42,7 +42,7 @@ class ReciepiesContainer extends React.Component {
         tempData = tempData.map( (item) => {
             if (item.recepieName === name) {
                 item.recepieName = title;
-                item.ingridients = ingrids.split(", ");
+                item.ingridients = ingrids.split(",");
             }
             this.setState({
                 data: tempData
