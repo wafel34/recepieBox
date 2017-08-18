@@ -4,7 +4,8 @@ var $ = window.jQuery = require("jQuery"),
     ReactDOM = require("react-dom"),
     ReactBootsrap = require("react-bootstrap"),
     bootstrap = require("bootstrap-sass"),
-    SingleRecepie = require("./singleRecepie");
+    SingleRecepie = require("./singleRecepie"),
+    AddNewRecepie = require("./addRecepie");
 
 var Button = ReactBootsrap.Button,
     ListGroup = ReactBootsrap.ListGroup,
@@ -49,6 +50,15 @@ class ReciepiesContainer extends React.Component {
             });
         });
     }
+    addRecepie = (obj) => {
+        var tempData = this.state.data;
+        this.setState({
+            data: [
+                obj,
+                ...tempData
+            ]
+        });
+    }
     render () {
         var recepies = this.state.data;
         recepies = recepies.map( (item, id) => {
@@ -59,13 +69,19 @@ class ReciepiesContainer extends React.Component {
                     onDelete={this.removeRecepie}
                     name={item.recepieName}
                     ingridients={item.ingridients}
-                    onSave={this.saveRecepie} />
+                    onSave={this.saveRecepie}
+                    onAddRecepie={this.addRecepie} />
             );
         });
         return (
+            <div>
             <Accordion>
                 {recepies}
             </Accordion>
+            <AddNewRecepie
+                onAddRecepie={this.addRecepie}/>
+            </div>
+
         );
     }
 }
