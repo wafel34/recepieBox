@@ -15,7 +15,7 @@ class ReciepiesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : [
+            data : this.getFromLocalStorage() || [
                 {
                     recepieName: "spaghetti",
                     ingridients: ["pasta","meat","sauce"]
@@ -26,6 +26,13 @@ class ReciepiesContainer extends React.Component {
                 }
             ]
         };
+    }
+    addToLocalStorage = (recepies) =>{
+        localStorage.setItem('data', JSON.stringify(recepies));
+    }
+    getFromLocalStorage = () => {
+        var item = localStorage.getItem("data");
+        return JSON.parse(item);
     }
     removeRecepie = (name) => {
         var tempData = this.state.data;
@@ -61,6 +68,7 @@ class ReciepiesContainer extends React.Component {
     }
     render () {
         var recepies = this.state.data;
+        this.addToLocalStorage(recepies);
         recepies = recepies.map( (item, id) => {
             return (
                 <SingleRecepie
