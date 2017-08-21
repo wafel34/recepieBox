@@ -48,7 +48,7 @@ class SingleRecepie extends React.Component {
             );
         });
         return (
-            <div>
+            <div className="single-recepie">
                 {/* THIS COMPONENT RENDER A BOX FOR EACH RECEPIE IN STATE.DATA */}
                 <Panel bsStyle="primary" collapsible header={this.props.name}>
                     <ListGroup>

@@ -5,7 +5,8 @@ var $ = window.jQuery = require("jQuery"),
     ReactBootsrap = require("react-bootstrap"),
     bootstrap = require("bootstrap-sass"),
     SingleRecepie = require("./singleRecepie"),
-    AddNewRecepie = require("./addRecepie");
+    AddNewRecepie = require("./addRecepie"),
+    Heading = require("./heading");
 
 //IMPORT REACT BOOTSTRAP COMPONENENTS
 var Button = ReactBootsrap.Button,
@@ -105,11 +106,12 @@ class ReciepiesContainer extends React.Component {
         //CREATE AND ACCORDION AND PLACE RECEPIES INSIDE, ALSO ADD BUTTON FOR ADDING NEW RECEPIES
         return (
             <div>
-            <Accordion>
-                {recepies}
-            </Accordion>
-            <AddNewRecepie
-                onAddRecepie={this.addRecepie}/>
+                <Heading />
+                <Accordion>
+                    {recepies}
+                </Accordion>
+                <AddNewRecepie
+                    onAddRecepie={this.addRecepie}/>
             </div>
 
         );
