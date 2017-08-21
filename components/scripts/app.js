@@ -1,4 +1,4 @@
-
+//IMPORT DEPENDENCIES
 var $ = window.jQuery = require("jQuery"),
     React = require("react"),
     ReactDOM = require("react-dom"),
@@ -7,13 +7,17 @@ var $ = window.jQuery = require("jQuery"),
     SingleRecepie = require("./singleRecepie"),
     AddNewRecepie = require("./addRecepie");
 
+//IMPORT REACT BOOTSTRAP COMPONENENTS
 var Button = ReactBootsrap.Button,
     ListGroup = ReactBootsrap.ListGroup,
     Accordion = ReactBootsrap.Accordion;
 
+//MAIN COMPONENT - HANDLES THE STATE OF RECEPIES
 class ReciepiesContainer extends React.Component {
     constructor(props) {
         super(props);
+
+        //INITIAL STATE: IF ANYTHING HAS BEEN SAVED TO LOCAL STORAGE TAKE IT, IF NOT TAKE DEFAULT DATA
         this.state = {
             data : this.getFromLocalStorage() || [
                 {
@@ -27,13 +31,23 @@ class ReciepiesContainer extends React.Component {
             ]
         };
     }
+
+    //SAVE STATE TO LOCAL STORAGE
     addToLocalStorage = (recepies) =>{
-        localStorage.setItem('data', JSON.stringify(recepies));
+        if (window.localStorage) {
+            localStorage.setItem('recepieData', JSON.stringify(recepies));
+        } else {
+            console.log("Sorry, local storage is not supported in this browser!");
+        }
     }
+
+    //TAKE DATA FROM LOCAL STORAGE, BUT FIRST CHECK IF LS IS AVAILALE
     getFromLocalStorage = () => {
-        var item = localStorage.getItem("data");
+        var item = localStorage.getItem("recepieData");
         return JSON.parse(item);
     }
+
+    //REMOVE RECEPIE FROM THE SCREEN
     removeRecepie = (name) => {
         var tempData = this.state.data;
         tempData = tempData.filter( (item) => {
@@ -44,6 +58,8 @@ class ReciepiesContainer extends React.Component {
             data: tempData
         });
     }
+
+    // TAKE PROPERTIES AND UPDATE THE STATE
     saveRecepie = (name, title, ingrids) => {
         var tempData = this.state.data;
 
@@ -57,6 +73,8 @@ class ReciepiesContainer extends React.Component {
             });
         });
     }
+
+    //HANDLES ADDING NEW RECEPIE
     addRecepie = (obj) => {
         var tempData = this.state.data;
         this.setState({
@@ -69,6 +87,8 @@ class ReciepiesContainer extends React.Component {
     render () {
         var recepies = this.state.data;
         this.addToLocalStorage(recepies);
+
+        //MAP THROUGH DATA AND RETURN COMPONENT FOR EACH RECEPIE
         recepies = recepies.map( (item, id) => {
             return (
                 <SingleRecepie
@@ -81,6 +101,8 @@ class ReciepiesContainer extends React.Component {
                     onAddRecepie={this.addRecepie} />
             );
         });
+
+        //CREATE AND ACCORDION AND PLACE RECEPIES INSIDE, ALSO ADD BUTTON FOR ADDING NEW RECEPIES
         return (
             <div>
             <Accordion>
