@@ -65,7 +65,7 @@ class SingleRecepie extends React.Component {
 
                             <FormGroup controlId="recepieNameForm">
                                 <ControlLabel>Recepie Name</ControlLabel>
-                                <FormControl inputRef={(ref) => {this.inputTitle = ref}} componentClass="textarea" defaultValue={this.props.name} />
+                                <FormControl inputRef={(ref) => {this.inputTitle = ref}} required componentClass="textarea" defaultValue={this.props.name} />
                            </FormGroup>
 
                         </Modal.Title>
@@ -73,7 +73,7 @@ class SingleRecepie extends React.Component {
                     <Modal.Body>
                         <FormGroup controlId="ingridientsForm">
                             <ControlLabel>Ingridients - sepparated by commas</ControlLabel>
-                            <FormControl inputRef={(ref) => {this.inputIngridients = ref}} componentClass="textarea" defaultValue={this.props.ingridients.join(",")} />
+                            <FormControl inputRef={(ref) => {this.inputIngridients = ref}} required componentClass="textarea" defaultValue={this.props.ingridients.join(",")} />
                         </FormGroup>
                     </Modal.Body>
                     <Modal.Footer>

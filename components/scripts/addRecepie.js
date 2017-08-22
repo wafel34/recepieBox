@@ -47,7 +47,7 @@ class AddNewRecepie extends React.Component {
                         <Modal.Title>
                             <FormGroup controlId="recepieNameForm">
                                 <ControlLabel>Recepie Name</ControlLabel>
-                                <FormControl inputRef={(ref) => {this.inputTitle = ref}} componentClass="textarea" placeholder="Type recepie name here" />
+                                <FormControl inputRef={(ref) => {this.inputTitle = ref}} required componentClass="textarea" placeholder="Type recepie name here" />
                            </FormGroup>
 
                         </Modal.Title>
@@ -55,7 +55,7 @@ class AddNewRecepie extends React.Component {
                     <Modal.Body>
                         <FormGroup controlId="ingridientsForm">
                             <ControlLabel>Ingridients - sepparated by commas</ControlLabel>
-                            <FormControl inputRef={(ref) => {this.inputIngridients = ref}} componentClass="textarea" placeholder="Ingridients separated by commas" />
+                            <FormControl inputRef={(ref) => {this.inputIngridients = ref}} required componentClass="textarea" placeholder="Ingridients separated by commas" />
                         </FormGroup>
                     </Modal.Body>
                     <Modal.Footer>
