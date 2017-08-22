@@ -32,7 +32,9 @@ class ReciepiesContainer extends React.Component {
             ]
         };
     }
-
+    shouldComponentUpdate = (nextProps, nextState) => {
+        return this.state.data !== nextState.data;
+    }
     //SAVE STATE TO LOCAL STORAGE
     addToLocalStorage = (recepies) =>{
         if (window.localStorage) {
